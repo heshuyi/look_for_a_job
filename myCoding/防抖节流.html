@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input class="aa" type="text">
+  <div>123</div>
+  <script>
+    let d = document.querySelector('div')
+    let h = document.querySelector('.aa')
+    function fangdou() {
+      console.log(2);
+      var flag = undefined
+      return function () {
+        if (flag) {
+          console.log(flag);
+          clearInterval(flag)
+        }
+        flag = setTimeout(() => {
+          console.log(1)
+          flag = null
+        }, 2000)
+
+      }
+    }
+    function jieliu(e) {
+      let flag
+      return function (e) {
+        // console.log(222);
+        // console.log(e);
+        if (flag) {
+          return
+        } else {
+          // console.log(e);
+          let c = e
+          flag = setTimeout(()=>{console.log(1111)
+          flag=null
+          },1000)
+        }
+      }
+    }
+    h.addEventListener('input', jieliu())
+    let c = d.addEventListener('click', fangdou())
+  </script>
+</body>
+
+</html>
