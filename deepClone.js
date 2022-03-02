@@ -12,12 +12,8 @@ var clone = (function() {
         var className = Object.prototype.toString.call(o).slice(8, -1);
         return className;
     };
-
-
     //这里这个变量我们用来存储已经保存过的属性，目的在于处理循环引用的问题
     var references = null;
-
-
     //遇到不同类型的对象的处理方式
     var handlers = {
         //正则表达式的处理

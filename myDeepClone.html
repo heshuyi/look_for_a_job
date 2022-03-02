@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function deepClone(obj,hash = new WeakMap()){
+      if(obj==null){
+        return obj 
+      }
+      if(hash.get(obj)){
+        return hash.get(obj)
+      }
+      let res = Array.isArray(obj)?[]:{}
+      hash.set(obj,res)
+      for(let i in obj){
+        if(typeof obj[i] == 'object'){
+          res[i] = deepClone(obj[i],hash)
+        }else{
+          res[i] = obj[i]
+        }
+      }
+      return res
+    }
+    // let c = [12,[12,21,[12,12,12]]]
+    // let d = deepClone(c)
+    // c[1]=2
+    let c = {
+      a:1,
+      b:2
+    }
+    let d = {
+      q:2
+    }
+    c.dd= d
+    d.cc=c
+    let e = deepClone(d)
+    console.log(e);
+  </script>
+</body>
+</html>

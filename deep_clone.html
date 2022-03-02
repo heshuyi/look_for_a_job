@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function deepClone(obj, hash = new WeakMap()) {
+      if (obj === null) return obj;
+      if (obj instanceof Date) return new Date(obj);
+      if (obj instanceof RegExp) return new RegExp(obj);
+      if (typeof obj !== "object") return obj;
+      // 是对象的话就要进行深拷贝
+      if (hash.get(obj)) {
+        console.log(11, hash.get(obj));
+        return hash.get(obj);
+      }
+      let cloneObj = new obj.constructor();
+      console.log(obj, cloneObj);
+      // 找到的是所属类原型上的constructor,而原型上的 constructor指向的是当前类本身
+      hash.set(obj, cloneObj);
+      for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          // 实现一个递归拷贝
+          cloneObj[key] = deepClone(obj[key], hash);
+        }
+      }
+      return cloneObj;
+    }
+    // var h = {
+    //   name:123
+    // }
+    // var c = {
+    //   A:12,
+    //   B:[12,123,[123,111]],
+    //   D:{
+    //     AA:12
+    //   }
+    // }
+    // c.aa = h
+    // h.bb=c
+
+    // var d = deepClone(c)
+    // c.B[2][1]=2
+    // console.log(d,c);
+  </script>
+</body>
+
+</html>
