@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function promiseall(arr) {
+      return new Promise((resolve, reject) => {
+        let res = []
+        if (arr.length == 0) {
+          return null
+        } else {
+          for (var i = 0; i < arr.length; i++) {
+            Promise.resolve(arr[i])
+              .then(text => {
+                if (i < arr.length) {
+                  res[i]=text
+                } 
+                if(i==arr.length-1)
+                  resolve(res)
+                
+              })
+              .catch(text =>{
+                console.log(text);
+                reject(text)} )
+          }
+        }
+      })
+    }
+    let a = new Promise((reslove, reject) => {
+      setTimeout(()=>reslove(1), 1000)
+    })
+    let b = new Promise((reslove, reject) => {
+      setTimeout(()=>reject(2), 2000)
+    })
+    let c = new Promise((reslove, reject) => {
+      setTimeout(()=>reslove(3), 3000)
+    })
+    promiseall([a, b, c]).then((res) => {
+      console.log(res);
+    }).catch(res=>{
+      console.log(res);
+    })
+  </script>
+</body>
+
+</html>

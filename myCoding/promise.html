@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var cc = function (iterator) {
+      let count = 0//用于计数，当等于len时就resolve
+      let len = iterator.length - 1
+      let res = []//用于存放结果
+      return new Promise((resolve, reject) => {
+        for (let i in iterator) {
+          Promise.resolve(iterator[i])//先转化为Promise对象
+            .then((data) => {
+              res[i] = data;
+              // console.log(count,i);
+              if (i == len) {
+                resolve(res)
+              }
+            })
+            .catch(e => {
+              reject(e)
+            })
+        }
+      })
+    }
+    var dd = function (iterators) {
+      return new Promise((resolve, reject) => {
+        for (const p of iterators) {
+          Promise.resolve(p)
+            .then((res) => {
+              resolve(res)
+            })
+            .catch(e => {
+              reject(e)
+            })
+        }
+      })
+
+    }
+    var p1 = new Promise((resolve, reject) => {
+      console.log('p1');
+      setTimeout(function () { reject(1) }, 8000)
+    });
+    var p2 = new Promise((resolve, reject) => {
+      console.log('p2');
+      setTimeout(function () { resolve(2) }, 3000)
+    });
+    var p3 = new Promise((resolve, reject) => {
+      console.log('p3');
+      setTimeout(function () { reject(3) }, 5000)
+    })
+
+    cc([p1, p2, p3]).then(function (values) {
+      console.log(values);
+    }).catch((res)=>{console.log('c'+res);});
+    // dd([p1,p2,p3]).then((res)=>{console.log(res);})
+  </script>
+</body>
+
+</html>
