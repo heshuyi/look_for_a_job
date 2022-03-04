@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Ct(value, next) {
+      this.value = value;
+      this.next = next;
+    }
+    let d = new Ct(4, null)
+    let c = new Ct(3, d)
+    let b = new Ct(2, c)
+    let a = new Ct(1, b)
+    let head = a
+    function changelist(head, k) {
+      let newhead = head;
+      let i = 1
+      let myhead = null
+      let j = 1
+      let cc = newhead
+      while (j < k) {
+        newhead = newhead.next
+        j++
+      }
+      newhead.next = null
+      aaaaaa(cc)
+      aaaaaa(newhead)
+      while (head) {
+        //  console.log(head.value);
+        if (i == k) {
+          myhead = head.next
+        }
+        head = head.next
+        i++
+      }
+      aaaaaa(myhead)
+      let d = myhead
+      while (d) {
+        if (d.next == null) {
+          d.next = newhead
+        } else {
+          d = d.next
+        }
+      }
+      return myhead
+    }
+    let aaa = changelist(a, 2)
+    function aaaaaa(aaa) {
+      while (aaa) {
+        console.log(aaa.value);
+        aaa = aaa.next
+      }
+    }
+
+  </script>
+</body>
+
+</html>
