@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class eventBus {
+      constructor() {
+        this.list = []
+      }
+      on(evnetName, fn) {
+        this.list.push({
+          name: evnetName,
+          fun: fn,
+          flag: 2
+        })
+      }
+      once(evnetName, fn) {
+        this.list.push({
+          name: evnetName,
+          fun: fn,
+          flag: 1
+        })
+      }
+      trigger(evnetName) {
+        let onceList = []
+        for (let i = 0; i < this.list.length; i++) {
+          if (this.list[i].name == evnetName) {
+            this.list[i].fun()
+            if (this.list[i].flag == 1)
+              onceList.unshift(i)
+          }
+        }
+        for (let i = 0; i < onceList.length; i++) {
+          this.list.splice(onceList[i], 1)
+        }
+        onceList = []
+      }
+      off(evnetName) {
+        for (let i = this.list.length - 1; i >= 0; i--) {
+          if (evnetName == this.list[i].name) {
+            this.list.splice(i, 1)
+          }
+        }
+        // console.log(this.list);
+      }
+    } const bus = new eventBus()
+    const fn1 = () => {
+      console.log('fn1')
+    }
+    const fn2 = () => {
+      console.log('fn2')
+    }
+    bus.on('fn', fn1)
+    console.log(bus.list);
+    bus.once('fn', fn2)
+    bus.on('fn', fn1)
+    bus.trigger('fn') // fn1 fn2 fn1
+    bus.trigger('fn') // fn1 fn1
+    bus.off('fn')
+    bus.trigger('fn') // null
+  </script>
+</body>
+
+</html>
