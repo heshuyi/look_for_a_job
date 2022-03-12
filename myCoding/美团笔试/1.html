@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let fu = 3
+    let fenzi = 1
+    let fenmu = 1
+    let fenr = 0
+    for (let i = 2; i < fu; i = i + 2) {
+      console.log(i);
+      fenmu = 1
+      fenzi = 1
+      for (let j = 1; j <= i; j++) {
+        fenmu = fenmu * (fu - j + 1)
+        fenzi = fenzi * (j)
+        console.log(fenmu, fenzi);
+      }
+      fenr = fenr + fenmu / fenzi
+    }
+  </script>
+</body>
+
+</html>
