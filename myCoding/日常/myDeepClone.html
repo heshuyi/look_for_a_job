@@ -12,7 +12,7 @@
       if(obj==null){
         return obj 
       }
-      if(hash.get(obj)){
+      if (hash.has(obj)) {
         return hash.get(obj)
       }
       let res = Array.isArray(obj)?[]:{}
