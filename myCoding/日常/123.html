@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 写出以下布局的样式和HTML结构，要求header高100px，nav宽200px，nav和content区域
+    // 高度随浏览器自适应，如果content区域内容过多，只content区域产生竖向滚动条（nav区域内容
+    // 过多的情况不用考虑）
+    --------------------
+      header
+    --------------------
+    |
+    |
+      nav | content
+      |
+    |
+    |
+      --------------------
+
+
+< style type = "text/css" >
+    .header{
+      height: 100px;
+      width: 100 %;
+    }
+    .body{
+      height: auto;
+      width: 100 %;
+      display: flex;
+    }
+    .nav{
+      width: 200px;
+      height: auto
+    }
+    .content{
+      flex: 1
+      overfloe - y: auto
+      overfloe - x: hidden
+    }
+    
+</ >
+      <body>
+        <div class='header'>header</div>
+        <div class='body'>
+          <div class='nav'></div>
+          <div class='content'></div>
+        </div>
+      </body>
+
+
+    --------------------------------------------------------
+var x = 10
+    function a(y) {
+      var x = 20
+      return b(y)
+    }
+    function b(y) {
+      console.log(x + y)
+    }
+    a(20) // 40
+    --------------------------------------------------------
+var num = 100
+    var a = {
+      num: 200,
+      func: {
+        num: 300,
+        print: function () {
+          console.log(this.num)
+        }
+      }
+    }
+
+
+    a.func.print() 100
+    // 
+    a.func.print.apply(a) 200
+    // 
+    a.func.print.apply(window)100
+    //
+
+    --------------------------------------------------------
+      class A {
+        constructor() {
+          this.test = 'constructor'
+        }
+        print() {
+          console.log('A');
+        }
+      }
+    class B extends A {
+      constructor() {
+        super();
+      }
+    }
+    var b = new B();
+    A.prototype.name = 'A';
+    A.prototype.test = 'prototype';
+    b.name ? 'A'
+b.test ? 'prototype'
+
+b.__proto__ ? B.prototype
+
+__proto__
+
+    prototype
+
+
+
+    --------------------------------------------------------
+
+var pro = new Promise((res, rej) => {
+      res(1);
+    });
+    pro.then(res => {
+      console.log(res);
+    });
+    console.log(2);
+    pro.then(res => {
+      console.log(res);
+    }).then(res => {
+      console.log(res);
+    })
+    2 1 1 null
+    //
+
+    --------------------------------------------------------    
+
+const list = [
+      { key: 1, data: 'A', parentKey: 0 },
+      { key: 2, data: 'B', parentKey: 100 },
+      { key: 3, data: 'C', parentKey: 1 },
+      { key: 4, data: 'D', parentKey: 1 },
+      { key: 5, data: 'E', parentKey: 2 },
+      { key: 6, data: 'F', parentKey: 3 },
+      { key: 7, data: 'G', parentKey: 2 },
+      { key: 8, data: 'H', parentKey: 4 },
+    ];
+    const result = convert(list);
+    function convert(list) {
+      let newlist = list
+      let res = []
+      let i = 0
+      let map = new Map()
+      while (list.length > i) {
+        if (map.has(list[i].parentKey){
+
+        } else {
+          res.push({
+            key: list[i].key,
+            data: list[i].data,
+            parentKey: list[i].parentKey,
+            chiildren: []
+          })
+          map.set(list[i].key, list[i].key)
+        }
+      }
+    }
+
+    // [
+    //   {
+    //     key: 1,
+    //     data: 'A',
+    //     parentKey: 0,
+    //     children: [
+    //       { key: 3, data: 'C', parentKey: 1, children: [{ key: 6, data: 'F', parentKey: 3 }] },
+    //       { key: 4, data: 'D', parentKey: 1, children: [{ key: 8, data: 'H', parentKey: 4 }] },
+    //     ],
+    //   },
+    //   {
+    //     key: 2,
+    //     data: 'B',
+    //     parentKey: 0,
+    //     children: [
+    //       { key: 5, data: 'E', parentKey: 2 },
+    //       { key: 7, data: 'G', parentKey: 2 },
+    //     ],
+    //   },
+    // ];
+
+    const App = () => {
+      console.log('render')
+
+      useEffect(() => {
+        console.log('render')
+      })
+    }
+
+
+
+
+
+  </script>
+</body>
+
+</html>

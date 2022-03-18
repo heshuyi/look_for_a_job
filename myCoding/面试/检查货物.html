@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function minCheckDuration(goods) {
+      let d = goods
+      let flag = 0
+      let flag1 = 1
+      let value = 0
+      let value1 = 0
+      while (d.length - 1 >= flag) {
+        if (goods[flag] + goods[flag + 1] < goods[flag + 2]) {
+          value = value + goods[flag]
+          console.log(goods[flag]);
+          flag = flag + 1
+        } else {
+          value = value + goods[flag]
+          console.log(goods[flag]);
+          flag = flag + 2
+        }
+      }
+      while (d.length - 1 >= flag1) {
+        if (goods[flag1] + goods[flag1 + 1] < goods[flag1 + 2]) {
+          value1 = value + goods[flag1]
+          // console.log(goods[flag1]);
+          flag1 = flag1 + 1
+        } else {
+          value1 = value1 + goods[flag1]
+          // console.log(goods[flag1]);
+          flag1 = flag1 + 2
+        }
+      }
+      console.log(value, value1);
+    }
+    // minCheckDuration([4, 9, 24])//2
+    minCheckDuration([2, 100, 2, 3, 3, 90, 3, 2, 80, 2])//14
+  </script>
+</body>
+
+</html>

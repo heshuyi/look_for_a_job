@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>手写bind和new</title>
 </head>
+
 <body>
   <script>
-    Function.prototype.mycall = function(obj,...args){
-      if(typeof obj == undefined){
+      Function.prototype.mycall = function (obj, ...args) {
+        if (typeof obj == undefined) {
         obj = window
       }
       obj.fn = this
@@ -17,12 +19,14 @@
       delete obj.fn
       return res
     }
-    function a(c,d){
-      console.log(this.c,d,c);
+      function a(c, d) {
+        console.log(this.c, d, c);
     }
-    var d = {c:1}
+      var d = { c: 1 }
 
-    a.mycall(d,111,222)
+      a.mycall(d, 111, 222)
+
   </script>
 </body>
+
 </html>

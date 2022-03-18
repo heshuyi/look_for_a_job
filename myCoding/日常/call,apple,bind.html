@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    Function.prototype.myapple = function (context, arg) {
+      if (context == null || context == undefined) {
+        context = window
+      }
+      context.fn = this
+      let res = context.fn(...arg)
+      delete context.fn
+      return res
+    }
+    Function.prototype.mycall = function (context, ...arg) {
+      if (context == null || context == undefined) {
+        context = window
+      }
+      context.fn = this
+      let res = context.fn(...arg)
+      delete context.fn
+      return res
+    }
+    Function.prototype.mybind = function (content, ...arg) {
+      let args = [...arg]
+      const that = this
+      function ress(...argg) {
+        if (content == null || content == undefined) {
+          content = window
+        }
+        args = [...args, ...argg]
+        content.fn = that
+        let res = content.fn(...args)
+        delete content.fn
+        return res
+      }
+      return ress
+    }
+    function a(aa, bb, cc) {
+      console.log(this.dd, aa, bb, cc);
+    }
+    let d = {
+      dd: 123
+    }
+    a.myapple(d, [1, 2, 3])
+    a.mycall(d, 1, 2, 3)
+    let ccccc = a.mybind(d, 1, 2)
+    ccccc()
+  </script>
+</body>
+
+</html>

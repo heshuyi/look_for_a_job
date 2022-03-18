@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function TreeRecover(root) {
+      let head = root
+      let d = root
+      function deep(node) {
+        let nodevalue
+        if (node == null) {
+          return null
+        }
+        if (!node.left) {
+          if (node.val < node.left.val) {
+            nodevalue = node.left.val
+            node.left.val = node.val
+            node.val = nodevalue
+          }
+
+        }
+        if (!node.right) {
+          if (node.val > node.right.val) {
+            nodevalue = node.right.val
+            node.right.val = node.val
+            node.val = nodevalue
+          }
+        }
+
+
+        deep(node.left)
+        deep(node.right)
+      }
+      deep(head)
+      console.log(root.val, d)
+    }
+  </script>
+</body>
+
+</html>
